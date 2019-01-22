@@ -14,6 +14,7 @@ import javax.xml.stream.events.Characters;
 import javax.xml.stream.events.XMLEvent;
 
 import com.jammin2shirts.TheRssed.Entities.Feed;
+import com.jammin2shirts.TheRssed.Entities.FeedMessage;
 
 public class RSSFeedParser {
 
@@ -76,25 +77,25 @@ public class RSSFeedParser {
 						title=getCharaterDate(event, eventReader);
 						break;
 					case DESCRIPTION:
-						title=getCharaterDate(event, eventReader);
+						description=getCharaterDate(event, eventReader);
 						break;
 					case LINK:
-						title=getCharaterDate(event, eventReader);
+						link=getCharaterDate(event, eventReader);
 						break;
 					case GUID:
-						title=getCharaterDate(event, eventReader);
+						guid=getCharaterDate(event, eventReader);
 						break;
 					case LANGUAGE:
-						title=getCharaterDate(event, eventReader);
+						language=getCharaterDate(event, eventReader);
 						break;
 					case AUTHOR:
-						title=getCharaterDate(event, eventReader);
+						author=getCharaterDate(event, eventReader);
 						break;
 					case PUB_DATE:
-						title=getCharaterDate(event, eventReader);
+						pubdate=getCharaterDate(event, eventReader);
 						break;
 					case COPYRIGHT:
-						title=getCharaterDate(event, eventReader);
+						copyright=getCharaterDate(event, eventReader);
 						break;
 					case ENCLOSURE:
 						Iterator<Attribute> iterator = event.asStartElement().getAttributes();
@@ -109,6 +110,20 @@ public class RSSFeedParser {
 							}
 						}
 						break;
+					}
+				} else if (event.isEndElement()) {
+					if (event.asEndElement().getName().getLocalPart()==(ITEM)) {
+						FeedMessage message = new FeedMessage();
+						message.setAuthor(author);
+						message.setDescription(description);
+						message.setEnclosure(enclosure);
+						message.setGuid(guid);
+						message.setLink(link);
+						message.setPubDate(pubdate);
+						message.setTitle(title);
+						feed.getEntries().add(message);
+						event = eventReader.nextEvent();
+						continue;
 					}
 				}
 			}

@@ -102,7 +102,7 @@ public class FeedMessage {
 		
 		Date date = null;
 		try {
-			if (pubDate.matches("[+]")) {
+			if (pubDate.matches("[+-]")) {
 				date = inputdfZone.parse(pubDate);
 			} else {
 				date = inputdfNorm.parse(pubDate);

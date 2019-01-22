@@ -1,10 +1,28 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
+    <title>Rss Feeds</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-    <p th:text="'Hello, ' + ${name} + '!'" />
+	
+	<a href="/" >Home</a>
+	
+	<h1>Display Feeds</h1>
+	<p th:text="${feed.title}" />
+	
+	<table>
+		<th:block th:each="entry : ${feed.getEntries()}" > 
+			<tr>
+				<td th:text="${entry.title}">...</td>
+				<td th:text="${entry.pubDate}">...</td>
+				<td colspan="2">
+					<a href="#" th:href="${entry.link}">Link</a>
+				</td>
+			</tr>
+		</th:block>
+	</table>
+	
+	
 </body>
 </html>

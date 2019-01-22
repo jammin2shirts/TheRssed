@@ -19,7 +19,14 @@ public class RssFeedController {
 		Feed feed = parser.readFeed();
 		model.addAttribute("feed", feed);
 		
+		
+		
 		return "DisplayRssFeeds";
 		
+	}
+	
+	@GetMapping("/tester")
+	public String tester() {
+		return "tester";
 	}
 }
