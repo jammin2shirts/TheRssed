@@ -12,9 +12,10 @@ import com.jammin2shirts.TheRssed.Utils.RSSFeedParser;
 public class RssFeedController {
 
 	final static String joeRss="http://joeroganexp.joerogan.libsynpro.com/rss";
+	final static String mangaRss="https://readms.net/rss";
 	
 	@GetMapping("/rssFeeds")
-	public String retrieveFeed(@RequestParam(name="url", required=false, defaultValue=joeRss) String url, Model model) {
+	public String retrieveFeed(@RequestParam(name="url", required=false, defaultValue=mangaRss) String url, Model model) {
 		RSSFeedParser parser = new RSSFeedParser(url);
 		Feed feed = parser.readFeed();
 		model.addAttribute("feed", feed);

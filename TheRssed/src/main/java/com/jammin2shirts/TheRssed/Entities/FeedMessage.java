@@ -15,7 +15,7 @@ public class FeedMessage {
 	private String enclosure;
 
 	private SimpleDateFormat df = new SimpleDateFormat("MM-dd-yyyy hh:mm:ss");
-	private SimpleDateFormat inputdfZone = new SimpleDateFormat("EEE, MM dd yyyy hh:mm:ss Z");
+	private SimpleDateFormat inputdfZone = new SimpleDateFormat("EEE, dd MMM yyyy hh:mm:ss Z");
 	private SimpleDateFormat inputdfNorm = new SimpleDateFormat("EEE, MM dd yyyy hh:mm:ss");
 
 	
@@ -100,19 +100,20 @@ public class FeedMessage {
 
 	public void setPubDate(String pubDate) {
 		
-		Date date = null;
-		try {
-			if (pubDate.matches("[+-]")) {
-				date = inputdfZone.parse(pubDate);
-			} else {
-				date = inputdfNorm.parse(pubDate);
-			}
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-		String strPubDate = df.format(date);
-		this.pubDate = strPubDate;
+//		Date date = null;
+//		try {
+//			if (pubDate.contains("+") || pubDate.contains("-") ) {
+//				System.out.println("pub");
+//				date = inputdfZone.parse(pubDate);
+//			} else {
+//				date = inputdfNorm.parse(pubDate);
+//			}
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		String strPubDate = df.format(date);
+		this.pubDate = pubDate;
 	}
 
 
