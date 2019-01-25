@@ -16,8 +16,9 @@
 			<tr>
 				<td th:text="${entry.title}">...</td>
 				<td th:text="${entry.pubDate}">...</td>
+				<td th:text="${entry.description}">...</td>
 				<td colspan="2">
-					<a href="#" th:href="${entry.link}">Link</a>
+					<a href="#" th:href="${entry.link}" target="_blank">Link</a>
 				</td>
 			</tr>
 		</th:block>
